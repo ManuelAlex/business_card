@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.7.1"
+  ansicolor:
+    dependency: transitive
+    description:
+      name: ansicolor
+      sha256: "50e982d500bc863e1d703448afdbf9e5a72eb48840a4f766fa361ffd6877055f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
   args:
     dependency: transitive
     description:
@@ -34,7 +42,7 @@ packages:
     source: hosted
     version: "2.13.0"
   auto_mappr:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: auto_mappr
       sha256: "3ce49379f250df99b3b2e40b25210fedb2846210b7c7d9a1dbc341e9d4d0c3fd"
@@ -42,7 +50,7 @@ packages:
     source: hosted
     version: "2.10.0"
   auto_mappr_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: auto_mappr_annotation
       sha256: "6b004ddabca19094c78bfdbd5185893cf3e70c5f11148878274238328bdb258e"
@@ -90,7 +98,7 @@ packages:
     source: hosted
     version: "3.0.3"
   build_runner:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: build_runner
       sha256: b24597fceb695969d47025c958f3837f9f0122e237c6a22cb082a5ac66c3ca30
@@ -193,6 +201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.1"
+  dart_mappable_builder:
+    dependency: "direct dev"
+    description:
+      name: dart_mappable_builder
+      sha256: "1116c70d9923e85e78a9339a67934949334a4190c8a6f46e1fbc908341ce424c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.0"
   dart_style:
     dependency: transitive
     description:

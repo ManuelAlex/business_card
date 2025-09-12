@@ -28,8 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-# Code generation for mapping between different objects with ease.
-  auto_mappr: ">=2.10.0"
+  # Code generation for mapping between different objects with ease.
+  auto_mappr_annotation: ">=2.2.0"
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -51,13 +51,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  auto_mappr: ">=2.10.0"
+  # Common tool for code-generation, maintained by the Dart team.
+  build_runner: ">=2.5.4"
+  # Builder for dart_mappable.
+  dart_mappable_builder: ">=4.3.0"
+  # Dev-dependency for users of drift. Contains the generator and development
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,8 +76,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
