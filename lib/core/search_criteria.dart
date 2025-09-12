@@ -10,6 +10,9 @@ class SearchCriteria {
     this.value,
     this.list,
   });
+  const SearchCriteria.equals(String this.field, this.value)
+    : operator = SearchOperator.equals,
+      list = null;
   final SearchOperator operator;
   final String? field;
   final dynamic value;

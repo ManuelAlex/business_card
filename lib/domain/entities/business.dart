@@ -31,4 +31,22 @@ class Business extends Entity<String> with BusinessMappable {
   final String name;
   final String location;
   final String phoneNumber;
+
+  /// Calculates relevance score based on how many words from query appear in any field
+  double calcRelevance(List<String> queryParts) {
+    double relevance = 0;
+    for (final String part in queryParts) {
+      final String lowerPart = part.toLowerCase();
+      if (name.toLowerCase().contains(lowerPart)) {
+        relevance += 2;
+      }
+      if (location.toLowerCase().contains(lowerPart)) {
+        relevance += 1;
+      }
+      if (phoneNumber.toLowerCase().contains(lowerPart)) {
+        relevance += 0.5;
+      }
+    }
+    return relevance;
+  }
 }

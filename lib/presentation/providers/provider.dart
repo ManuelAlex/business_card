@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import '../../core/failure.dart';
-import '../../core/search_criteria.dart';
 import '../../core/sort_order.dart';
 import '../../data/repository/business_repository_impl.dart';
 import '../../domain/entities/business.dart';
@@ -52,23 +51,31 @@ class BusinessProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> searchBusinesses(SearchCriteria criteria) async {
+  Future<void> searchBusinesses(String query) async {
+    if (query.isEmpty) {
+      await loadBusinesses();
+      return;
+    }
+
     _state = const BusinessLoading();
     notifyListeners();
 
-    final Either<Failure, Iterable<Business>> result = await _repository.search(
-      <SortOrder>[],
-      criteria,
-    );
+    final List<String> queryParts = query.trim().split(RegExp(r'\s+'));
 
-    result.fold(
-      (Failure failure) {
-        _state = BusinessError(failure);
-      },
-      (Iterable<Business> businesses) {
-        _state = BusinessData(businesses.toList());
-      },
-    );
+    final List<MapEntry<Business, double>> scored = (_cache ?? [])
+        .map((b) => MapEntry(b, b.calcRelevance(queryParts)))
+        .where((entry) => entry.value > 0)
+        .toList();
+
+    scored.sort((a, b) => b.value.compareTo(a.value));
+
+    final List<Business> sortedBusinesses = scored.map((e) => e.key).toList();
+
+    if (sortedBusinesses.isEmpty) {
+      _state = const BusinessEmpty();
+    } else {
+      _state = BusinessData(sortedBusinesses);
+    }
 
     notifyListeners();
   }
