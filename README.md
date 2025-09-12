@@ -50,6 +50,8 @@ This project follows a **Clean Architecture** approach, separating concerns into
 - **Normalized domain model** from messy JSON keys.
 - **Reusable `BusinessCard` widget** supporting generics.
 - **Microtask-based initial data loading** to avoid `BuildContext` issues.
+- **Search with relevance ranking**: Users can search businesses by any field (name, location, phone number), and results are sorted by how closely they match the query.
+
 
 ---
 
