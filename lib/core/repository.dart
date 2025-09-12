@@ -17,12 +17,6 @@ abstract class Repository<TId, TEntity extends Entity<TId>> {
     bool includeDeleted = false,
   });
 
-  Stream<Either<Failure, Iterable<TEntity>>> streamAll(
-    List<SortOrder> sortOrders, {
-    PageRequest? pageRequest,
-    bool includeDeleted = false,
-  });
-
   Future<Either<Failure, Iterable<TEntity>>> search(
     List<SortOrder> sortOrders,
     SearchCriteria searchCriteria,
@@ -35,6 +29,4 @@ abstract class Repository<TId, TEntity extends Entity<TId>> {
   Future<Either<Failure, TEntity>> getById(TId id);
 
   Future<Either<Failure, TEntity?>> getByIdOrNull(TId id);
-
-  Stream<Either<Failure, TEntity>> streamById(TId id);
 }

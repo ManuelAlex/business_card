@@ -8,7 +8,7 @@ import '../../dtos/business_dto_1.dart';
 import '../../dtos/business_dto_mapper.dart';
 
 class BusinessLocalDataSource {
-  BusinessLocalDataSource({this.assetPath = 'assets/business.json'});
+  BusinessLocalDataSource({this.assetPath = 'assets/json/business.json'});
   final String assetPath;
 
   Future<Either<Failure, List<Business>>> loadBusinesses() async {

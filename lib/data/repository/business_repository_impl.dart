@@ -21,17 +21,21 @@ class BusinessRepositoryImpl extends BusinessRepository {
 
   @override
   Future<Either<Failure, int>> count() async {
-    final result = await listAll(<SortOrder>[]);
-    return result.map((businesses) => businesses.length);
+    final Either<Failure, Iterable<Business>> result = await listAll(
+      <SortOrder>[],
+    );
+    return result.map((Iterable<Business> businesses) => businesses.length);
   }
 
   @override
   Future<Either<Failure, Business>> getById(BusinessId id) async {
-    final result = await listAll(<SortOrder>[]);
-    return result.fold(Left.new, (businesses) {
+    final Either<Failure, Iterable<Business>> result = await listAll(
+      <SortOrder>[],
+    );
+    return result.fold(Left.new, (Iterable<Business> businesses) {
       try {
-        final business = businesses.firstWhere(
-          (biz) => biz.id == id,
+        final Business business = businesses.firstWhere(
+          (Business biz) => biz.id == id,
           orElse: () => throw Exception('Business not found'),
         );
         return Right(business);
@@ -43,14 +47,16 @@ class BusinessRepositoryImpl extends BusinessRepository {
 
   @override
   Future<Either<Failure, Business?>> getByIdOrNull(BusinessId id) async {
-    final result = await getById(id);
-    return result.fold((failure) => const Right(null), Right.new);
+    final Either<Failure, Business> result = await getById(id);
+    return result.fold((Failure failure) => const Right(null), Right.new);
   }
 
   @override
   Future<Either<Failure, bool>> isEmpty() async {
-    final result = await listAll(<SortOrder>[]);
-    return result.map((businesses) => businesses.isEmpty);
+    final Either<Failure, Iterable<Business>> result = await listAll(
+      <SortOrder>[],
+    );
+    return result.map((Iterable<Business> businesses) => businesses.isEmpty);
   }
 
   @override
@@ -62,11 +68,12 @@ class BusinessRepositoryImpl extends BusinessRepository {
     final Either<Failure, List<Business>> remoteResult = await remoteDataSource
         .fetchBusinesses();
 
-    return await remoteResult.fold((failure) async {
+    return await remoteResult.fold((Failure failure) async {
       // fallback to local if remote fails
-      final localResult = await localDataSource.loadBusinesses();
+      final Either<Failure, List<Business>> localResult = await localDataSource
+          .loadBusinesses();
       return localResult.fold(Left.new, Right.new);
-    }, (businesses) async => Right(businesses));
+    }, (List<Business> businesses) async => Right(businesses));
   }
 
   @override
@@ -74,9 +81,11 @@ class BusinessRepositoryImpl extends BusinessRepository {
     List<SortOrder> sortOrders,
     SearchCriteria searchCriteria,
   ) async {
-    final result = await listAll(sortOrders);
-    return result.map((businesses) {
-      return businesses.where((biz) {
+    final Either<Failure, Iterable<Business>> result = await listAll(
+      sortOrders,
+    );
+    return result.map((Iterable<Business> businesses) {
+      return businesses.where((Business biz) {
         if (searchCriteria.operator == SearchOperator.equals &&
             searchCriteria.field == 'name') {
           return biz.name == searchCriteria.value;
@@ -84,20 +93,5 @@ class BusinessRepositoryImpl extends BusinessRepository {
         return true;
       });
     });
-  }
-
-  @override
-  Stream<Either<Failure, Iterable<Business>>> streamAll(
-    List<SortOrder> sortOrders, {
-    PageRequest? pageRequest,
-    bool includeDeleted = false,
-  }) async* {
-    yield await listAll(sortOrders);
-  }
-
-  @override
-  Stream<Either<Failure, Business>> streamById(BusinessId id) async* {
-    final result = await getById(id);
-    yield result;
   }
 }
