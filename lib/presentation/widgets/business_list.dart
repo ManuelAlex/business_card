@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/business.dart';
 import 'business_card.dart';
+import 'business_details_screen.dart';
 
 class BusinessList extends StatelessWidget {
   const BusinessList({super.key, required this.businesses});
@@ -15,6 +16,14 @@ class BusinessList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         final Business business = businesses[index];
         return BusinessCard<Business>(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BusinessDetailsScreen(business: business),
+              ),
+            );
+          },
           entity: business,
           builder: (Business b) {
             return Column(
