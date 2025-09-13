@@ -5,10 +5,6 @@ import '../../core/mappable_entity.dart';
 
 part 'business.mapper.dart';
 
-/// This class serves as a unified interface for both `CategoryDetails` and `OnThisDayCategory`.
-/// - Combines multiple facets (`CategoryDetails` and `OnThisDayCategory`) into a single entity.
-/// - Allows dynamic handling of both regular categories and "On This Day" events.
-
 @MappableEntity()
 class Business extends Entity<String> with BusinessMappable {
   const Business({
