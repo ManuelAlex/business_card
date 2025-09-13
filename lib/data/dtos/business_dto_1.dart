@@ -8,11 +8,11 @@ part 'business_dto_1.mapper.dart';
 @MappableClass(includeCustomMappers: <MapperBase<Object>>[DatetimeJsonMapper()])
 class BusinessDto1 extends Dto with BusinessDto1Mappable {
   BusinessDto1({
-    DateTime? timestamp, // add it here
+    DateTime? timestamp,
     required this.name,
     required this.location,
     required this.phoneNumber,
-  }) : timestamp = timestamp ?? DateTime.now(); // fallback to now
+  }) : timestamp = timestamp ?? DateTime.now();
 
   /// Random factory constructor for test purposes.
   factory BusinessDto1.random() => BusinessDto1(
