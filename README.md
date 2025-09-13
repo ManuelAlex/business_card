@@ -83,4 +83,4 @@ This project follows a **Clean Architecture** approach, separating concerns into
 
 ![BusinessCard Details Screen](assets/images/business_card_details.png)
 
-![BusinessCard Search Functionality](business_card_search.png)
+![BusinessCard Search Functionality](assets/images/business_card_search.png)
