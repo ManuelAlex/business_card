@@ -77,3 +77,10 @@ This project follows a **Clean Architecture** approach, separating concerns into
 - Consider **Riverpod** for more scalable DI and state management.
 - Add **pagination** and **infinite scrolling** for large datasets.
 - Improve **error handling and logging** (e.g., Sentry, Crashlytics).
+
+## Screenshots
+![BusinessCard Home Screen](assets/images/business_card_home.png)
+
+![BusinessCard Details Screen](assets/images/business_card_details.png)
+
+![BusinessCard Search Functionality](business_card_search.png)
